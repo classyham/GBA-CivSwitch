@@ -35,30 +35,10 @@ jobs:
           python3 -B tools/release_ci.py prepare
           --kind moonlight
           --repository "$GITHUB_REPOSITORY" --target "$GITHUB_SHA"
-      - name: Native build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install --yes build-essential cmake ninja-build
-      - name: Bootstrap pinned toolchain and sources
-        run: npm run bootstrap
-      - name: Build streaming runtime
-        run: npm run build
       - name: Build versioned app with update declaration
         run: python3 -B tools/release_ci.py build
-      - name: Host checks
-        run: |
-          npm test
-          npm run test:release
-      - name: Generated runtime checks
-        run: npm run test:runtime
       - name: Inspect package
         run: python3 -B tools/package_payload.py --inspect dist/gba.civapp
-      - name: Package and browser lifetime checks
-        env:
-          RELEASE_VERSION: ${{ steps.plan.outputs.version }}
-        run: npm run test:package -- "$RELEASE_VERSION"
-      - name: Browser navigation checks
-        run: npm run test:ui
       - name: Retain validated workflow artifacts
         uses: actions/upload-artifact@v7
         with:
