@@ -1,12 +1,12 @@
 {
-  "name": "civswitch-moonlight",
+  "name": "civswitch-gba",
   "private": true,
-  "description": "Moonlight UI and Sunshine pairing experiment for CivSwitch on Switch 2",
+  "description": "Experimental gba emulator within civswitch.",
   "scripts": {
     "bootstrap": "python3 -B tools/wasm2js/bootstrap.py",
     "build": "python3 -B tools/wasm2js/build.py",
-    "package": "python3 -B tools/package_payload.py --directory . --non-interactive -o dist/moonlight.civapp && python3 -B tools/package_payload.py --inspect dist/moonlight.civapp",
-    "test:package": "python3 -B tests/test_packager.py && node tests/test-package.cjs dist/moonlight.civapp",
+    "package": "python3 -B tools/package_payload.py --directory . --non-interactive -o dist/gba.civapp && python3 -B tools/package_payload.py --inspect dist/gba.civapp",
+    "test:package": "python3 -B tests/test_packager.py && node tests/test-package.cjs dist/gba.civapp",
     "test": "node --test tests/test-apps.cjs tests/test-artwork.cjs tests/test-artwork-store.cjs tests/test-settings.cjs tests/test-stream-io.cjs tests/test-stream-runtime-cache.cjs tests/test-stream-clock.cjs tests/test-stream-stop.cjs tests/test-stream-pacing.cjs tests/test-stream-rumble.cjs tests/test-telemetry.cjs tests/test-media-queues.cjs tests/test-network.cjs tests/test-pairing.cjs tests/test-store.cjs tests/test-streaming.cjs tests/test-native-texture.cjs tests/test-controller-input.cjs tests/test-touch-input.cjs tests/test-gamepad-mouse.cjs tests/test-stream-keyboard.cjs tests/test-chrome-cleanup.cjs",
     "test:ui": "node tests/test-ui.cjs",
     "test:runtime": "node tests/runtime/test-core.cjs && node tests/runtime/test-runtime.cjs && node tests/runtime/test-direct-receive.cjs && node tests/runtime/test-session-routing.cjs && node tests/runtime/test-rumble.cjs && python3 -B tests/runtime/test-wasm2js-specialization.py",
