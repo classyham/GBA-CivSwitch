@@ -29,7 +29,6 @@
 	"app/js/video.js",
 	"app/js/video/proxy.js",
 	"app/js/video/software.js",
-	"app/js/video/worker.js",
 	"app/resources/biosbin.js",
 	"app/resources/console.js",
 	"app/resources/xhr.js"
