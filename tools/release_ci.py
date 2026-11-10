@@ -137,8 +137,8 @@ def build_homebrew(plan, directory):
 def build_moonlight(plan):
     packager.main(['--directory', str(ROOT), '--non-interactive', '--no-save-metadata', '--version', plan['version'],
                    '--releases-url', 'https://github.com/'+plan['repository']+'/releases/latest',
-                   '--update-asset', 'moonlight.civapp', '-o', str(ROOT/'dist/moonlight.civapp')])
-    return [ROOT/'dist/moonlight.civapp', ROOT/'tools/package_payload.py']
+                   '--update-asset', 'gba.civapp', '-o', str(ROOT/'dist/gba.civapp')])
+    return [ROOT/'dist/gba.civapp', ROOT/'tools/package_payload.py']
 
 
 def build(directory):
@@ -149,7 +149,7 @@ def build(directory):
     checksum_file.write_text(checksums)
     files.append(checksum_file)
     artifacts = {p.name: {'path': str(p.relative_to(ROOT)), 'bytes': p.stat().st_size,
-                         'sha256': hashlib.sha256(p.read_bytes()).hexdigest()} for p in files}
+                        'sha256': hashlib.sha256(p.read_bytes()).hexdigest()} for p in files}
     (directory/'artifacts.json').write_text(json.dumps(artifacts, indent=2)+'\n')
     title = 'CivHomebrew' if plan['kind'] == 'civhomebrew' else 'Moonlight'
     notes = title+' '+plan['tag']+'\n\nCommit: `'+plan['target']+'`\n\n'
@@ -158,7 +158,7 @@ def build(directory):
         notes += '\n'.join('- '+name+': v'+version(target['release']) for name, target in manifest['components'].items())+'\n\n'
         notes += 'Includes the complete component set for updating directly from older releases.\n'
     else:
-        notes += 'Install moonlight.civapp through CivHomebrew, or use X Menu → Check app updates.\n'
+        notes += 'Install gba.civapp through CivHomebrew, or use X Menu → Check app updates.\n'
     notes += '\nSee SHA256SUMS for artifact checksums.\n'
     (directory/'notes.md').write_text(notes)
     print('Validated release artifacts: '+', '.join(artifacts))
