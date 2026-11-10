@@ -52,7 +52,7 @@ jobs:
       - name: Generated runtime checks
         run: npm run test:runtime
       - name: Inspect package
-        run: python3 -B tools/package_payload.py --inspect dist/moonlight.civapp
+        run: python3 -B tools/package_payload.py --inspect dist/gba.civapp
       - name: Package and browser lifetime checks
         env:
           RELEASE_VERSION: ${{ steps.plan.outputs.version }}
@@ -65,7 +65,7 @@ jobs:
           name: moonlight-${{ steps.plan.outputs.tag }}
           if-no-files-found: error
           path: |
-            dist/moonlight.civapp
+            dist/gba.civapp
             dist/SHA256SUMS
             tools/package_payload.py
       - name: Publish complete verified release
